@@ -10,7 +10,6 @@ class CardGameWarSpec extends WordSpec with Matchers {
     }
     "queens are higher rank than jacks" in {
       assert(playRound( Card("Spade", "Queen"), Card("Spade","Jack")) == Card("Spade", "Queen"))
-
     }
     "kings are higher rank than queens" in {
       assert(playRound( Card("Spade", "Queen"), Card("Spade","King")) == Card("Spade", "King"))
@@ -25,13 +24,14 @@ class CardGameWarSpec extends WordSpec with Matchers {
       assert(playRound( Card("Club", "Ace"), Card("Diamond","Ace")) == Card("Diamond", "Ace"))
     }
     "if the ranks are equal, hearts beat diamonds" in {
-      assert(playRound( Card("Club", "Heart"), Card("Diamond","Ace")) == Card("Heart", "Ace"))
+      assert(playRound( Card("Heart", "Ace"), Card("Diamond","Ace")) == Card("Heart", "Ace"))
     }
   }
   "playGame" when {
     "the player loses when they run out of cards" in {
       // TODO: Implement Working Test. This will pass if they return true regardless of who actually wins
-      assert(playGame(Player("Bob", createDeck), Player("Alice", createDeck)).isInstanceOf[String])
+      val decks = createDecks
+      assert(playGame(Player("Bob", decks._1), Player("Alice", decks._2)).isInstanceOf[String])
     }
 
   }
